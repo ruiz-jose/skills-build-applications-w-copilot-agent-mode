@@ -100,10 +100,46 @@ These are the current models supported for GitHub Copilot Chat:
 
 We'll be using a modern web application stack:
 
-- **Frontend**: React.js
-- **Backend**: Python with Django REST Framework
-- **Database**: MongoDB
-- **Development Environment**: GitHub Codespaces
+
+---
+
+### Cómo levantar MongoDB en GitHub Codespaces
+
+Para que OctoFit Tracker funcione correctamente en Codespaces, sigue estos pasos para iniciar MongoDB usando Docker:
+
+1. **Inicia MongoDB con Docker:**
+   ```bash
+   docker run -d --name mongodb -p 27017:27017 mongo:latest
+   ```
+
+2. **Verifica que el contenedor esté corriendo:**
+   ```bash
+   docker ps
+   ```
+
+3. **Accede al shell de MongoDB dentro del contenedor:**
+   ```bash
+   docker exec -it mongodb mongosh
+   ```
+
+4. **Inicializa la base de datos y colecciones:**
+   ```bash
+   docker exec -it mongodb mongosh --eval "db = db.getSiblingDB('octofit_db'); db.createCollection('users'); db.createCollection('teams'); db.createCollection('activity'); db.createCollection('leaderboard'); db.createCollection('workouts'); db.users.createIndex({ email: 1 }, { unique: true }); db.teams.createIndex({ name: 1 }, { unique: true }); db.activity.createIndex({ activity_id: 1 }, { unique: true }); db.leaderboard.createIndex({ leaderboard_id: 1 }, { unique: true }); db.workouts.createIndex({ workout_id: 1 }, { unique: true });"
+   ```
+
+5. **Configura tu backend Django para conectar con MongoDB:**
+   ```python
+   DATABASES = {
+       'default': {
+           'ENGINE': 'djongo',
+           'NAME': 'octofit_db',
+           'HOST': 'localhost',
+           'PORT': 27017,
+       }
+   }
+   ```
+
+---
 
 ### Workshop Structure
 

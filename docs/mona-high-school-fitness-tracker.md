@@ -116,7 +116,7 @@ Type the following prompt in GitHub Copilot Chat:
 In our next steps lets think step by step and setup the following in this order
 
 1. Initialize the mongo monafit_db database and create a correct table structure for users, teams, activities, leaderboard, and workouts collections
-2. Make sure there is a unique id for primary key for the user collection 
+2. Make sure there is a unique id for the primary key for the user collection 
    ex. db.users.createIndex({ "email": 1 }, { unique: true })
 3. settings.py in our django project for mongodb monafit_db database including localhost and the port
 4. settings.py in our django project setup for all installed apps. ex djongo, monafit_tracker, rest_framework
@@ -230,7 +230,7 @@ WSGI_APPLICATION = "monafit_tracker.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'monafit_db',
+        'NAME': 'octofit_db',
         'HOST': 'localhost',
         'PORT': 27017,
     }
