@@ -48,6 +48,41 @@ In this exercise, you will:
 
    <a id="start-exercise" href="https://github.com/ruiz-jose/skills-build-applications-w-copilot-agent-mode/issues/1">
       <img src="https://img.shields.io/badge/🚀_Start_Exercise-008000" height="25pt"/>
+   
+
+---
+
+## Uso de MongoDB en GitHub Codespaces
+
+Para levantar MongoDB en tu Codespace y conectar tu aplicación OctoFit:
+
+1. **Inicia MongoDB con Docker:**
+   ```bash
+   docker run -d --name mongodb -p 27017:27017 mongo:latest
+   ```
+
+2. **Verifica que el contenedor esté corriendo:**
+   ```bash
+   docker ps
+   ```
+
+3. **Conéctate a MongoDB desde tu backend usando la URI:**
+   ```
+   mongodb://localhost:27017
+   ```
+
+4. **(Opcional) Accede al shell de MongoDB dentro del contenedor:**
+   ```bash
+   docker exec -it mongodb mongosh
+   ```
+
+5. **Dependencias Python necesarias:**
+   - djongo
+   - pymongo
+
+Estas ya están incluidas en `octofit-tracker/backend/requirements.txt`.
+
+---
    </a>
 
 
